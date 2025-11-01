@@ -4,3 +4,129 @@
 *:after {
   box-sizing: border-box;
 }
+body{
+  font-family: "Roboto", sans-serif;
+}
+header, nav, main,footer{
+  max-width: 1000px;
+  margin: 0 auto;
+}
+header{
+  display: flex;
+  justify-content: space-around;
+}
+
+nav{
+  background-color: #201f1f;
+  width: 100%;
+}
+.siteName a{
+  text-decoration: none;
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+#tools a{
+  text-decoration: none;
+  color: #333;
+  
+}
+nav ul{
+  display: flex;
+  justify-content: space-around;
+  padding: 0.6rem;
+  list-style: none;
+  align-items: center;
+}
+
+nav ul li a{
+  text-decoration: none;
+  color: #fbf9f9;
+  cursor: pointer;
+}
+
+nav ul li a:hover{
+  color: #ffe208;
+}
+
+.hero h1{
+  font-size: 1.4rem;
+}
+
+.hero{
+  position: relative;
+}
+.hero-img img{
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+
+.hero-content{
+  position: absolute;
+  top: 2rem;
+  max-width: 150px;
+  background-color: #f6f3f3;
+  color: #06303b;
+  background-color: rgba(255, 255, 255, 0.70);
+  padding: 0.75rem;
+  border-radius: 4px;
+
+}
+.hero-content h2{
+  font-size: 1rem;
+}
+.hero-content img{
+  width: 100px;
+}
+
+
+.upgrade-grid{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 400px;
+  gap: 1rem;
+}
+.upgrade-item{
+  text-align: center;
+  align-items: center;
+  padding: 1rem;
+  height: 75px;
+  background-color: #00b8d9;
+  margin-bottom: 1rem;
+}
+
+.upgrade-item img {
+  width: 50px;
+  height: auto;
+  display: block;
+  margin: 0 auto 0.5rem;
+  /* margin-bottom: 1rem; */
+}
+
+
+@media screen and (min-width: 768px) {
+  .hero {
+    position: relative;
+  }
+
+  .hero-content {
+    position: absolute;
+    top: 13rem;
+    left: 2rem;
+    max-width: 180px;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 0.75rem;
+    border-radius: 5px;
+    text-align: left;
+  }
+
+  .review_upgrade{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+  .Upgrades{
+    grid-row: 1/-1;
+  }
+}
