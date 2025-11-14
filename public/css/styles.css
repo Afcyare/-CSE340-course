@@ -11,6 +11,14 @@ header, nav, main,footer{
   max-width: 1000px;
   margin: 0 auto;
 }
+
+#wrapper {
+    width: 95%;
+    background-color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 1em;
+}
 header{
   display: flex;
   justify-content: space-around;
@@ -106,8 +114,51 @@ nav ul li a:hover{
 }
 
 
-@media screen and (min-width: 768px) {
-  .hero {
+
+
+
+#inv-display {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#inv-display li {
+    margin-bottom: .5em;
+    border: 1px #ccc solid;
+    list-style-type: none;
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+#inv-display li img {
+    object-fit: fill;
+}
+image{
+  max-width: 100%;
+}
+
+hr {
+    border: 2px solid #242333;
+    margin: 0;
+}
+
+@media only screen and (min-width: 768px){
+  body {
+        background-image: linear-gradient(45deg, #000 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #000 75%), linear-gradient(45deg, transparent 75%, #000 75%), linear-gradient(45deg, #000 25%, #fff 25%);
+        background-size: 100px 100px;
+        background-position: 0 0, 0 0, -50px -50px, 50px 50px;
+    }
+        #wrapper {
+        border: 5px solid #01b0d3;
+        border-radius: 10px;
+        margin-top: 1rem;
+        padding: 1vw;
+        width: 75vw;
+        max-width: 1200px;
+    }
+    .hero {
     position: relative;
   }
 
@@ -129,4 +180,32 @@ nav ul li a:hover{
   .Upgrades{
     grid-row: 1/-1;
   }
-}
+
+  #inv-display{
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+  }
+  #inv-display li {
+        max-width: 200px;
+        flex: 1 0 auto;
+        text-align: center;
+        height: 250px;
+        display: grid;
+        border-radius: 10px
+  }
+  
+  #inv-display a{
+    height: 150px;
+  }
+    #inv-display h2 {
+        font-size: 1rem;
+    }
+      #inv-display img {
+        border-radius: 10px 10px;
+    }
+
+    #inv-display div {
+        width: 100%;
+        height: 100px;
+    }
+  }
