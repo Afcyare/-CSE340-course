@@ -11,9 +11,9 @@ const env = require("dotenv").config();
 const app = express();
 const static = require("./routes/static");
 const baseController = require("./controllers/baseController");
-
-// ADD THIS LINE - Import the inventory route
 const inventoryRoute = require("./routes/inventoryRoute");
+const utilities = require("./utilities/");
+
 /* ***********************
  * View Engine and Templates
  *************************/
