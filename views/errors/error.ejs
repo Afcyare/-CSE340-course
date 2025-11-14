@@ -1,0 +1,20 @@
+<!-- views/errors/error.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <div id="wrapper">
+        
+        <%- nav %> <!-- Display navigation -->
+        <main>
+            <h1>
+                <%= message || 'An error occurred' %>
+            </h1>
+            <p>Status: <%= title || 500 %></p>
+        </main>
+        
+    </div>
+</body>
+</html>
