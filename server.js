@@ -39,30 +39,33 @@ app.use(async (req, res, next) => {
 });
 
 /* ***********************
-* Express Error Handler
-* Place after all other middleware
-*************************/
+ * Express Error Handler
+ * Place after all other middleware
+ *************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
+  let nav = await utilities.getNav();
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+  if (err.status == 404) {
+    message = err.message;
+  } else {
+    message = "Oh no! There was a crash. Maybe try a different route?";
+  }
   res.render("errors/error", {
-    title: err.status || 'Server Error',
+    title: err.status || "Server Error",
     message,
-    nav
-  })
-})
+    nav,
+  });
+});
 
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
  *************************/
 const port = process.env.PORT || 5500;
-const host = process.env.HOST;
 
 /* ***********************
  * Log statement to confirm server operation
  *************************/
 app.listen(port, () => {
-  console.log(`app listening on ${host}:${port}`);
+  console.log(`app listening on ${port}`);
 });
