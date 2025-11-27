@@ -1,4 +1,4 @@
-CREATE TYPE public.sample AS ENUM ('client', 'employee', 'admin');
+CREATE TYPE public.sample AS ENUM ('Client', 'Employee', 'Admin');
 ALTER TYPE public.sample OWNER TO fcyare7;
 -- Table structure for table 'classification'
 CREATE TABLE public.classification (
