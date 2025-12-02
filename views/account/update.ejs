@@ -1,0 +1,56 @@
+<h1><%= title %></h1>
+
+<% if (message && message.length > 0) { %>
+  <p class="notice"><%= message %></p>
+<% } %>
+
+<div class="admin-form-wrapper">
+  <!-- Account Update Form -->
+  <h2>Account Update</h2>
+  <form id="accountUpdateForm" action="/account/update" method="POST">
+    <input type="hidden" name="account_id" value="<%= account_id %>">
+    
+    <label for="account_firstname">First Name:</label>
+    <input type="text" id="account_firstname" name="account_firstname" 
+           value="<%= account_firstname %>" required>
+    
+    <label for="account_lastname">Last Name:</label>
+    <input type="text" id="account_lastname" name="account_lastname" 
+           value="<%= account_lastname %>" required>
+    
+    <label for="account_email">Email:</label>
+    <input type="email" id="account_email" name="account_email" 
+           value="<%= account_email %>" required>
+    
+    <% if (errors && errors.account) { 
+      errors.account.forEach(err => { %>
+        <p class="error"><%= err.msg %></p>
+    <% }) } %>
+    
+    <button type="submit">Update Account</button>
+  </form>
+</div>
+
+<div class="admin-form-wrapper">
+  <!-- Change Password Form -->
+  <h2>Change Password</h2>
+  <form id="passwordChangeForm" action="/account/update-password" method="POST">
+    <input type="hidden" name="account_id" value="<%= account_id %>">
+    
+    <label for="account_password">New Password:</label>
+    <input type="password" id="account_password" name="account_password" 
+           placeholder="Enter new password" required>
+    <small>Password must be at least 12 characters and include at least one uppercase letter, one lowercase letter, one number, and one special character.</small>
+    
+    <label for="account_password_confirm">Confirm New Password:</label>
+    <input type="password" id="account_password_confirm" name="account_password_confirm" 
+           placeholder="Confirm new password" required>
+    
+    <% if (errors && errors.password) { 
+      errors.password.forEach(err => { %>
+        <p class="error"><%= err.msg %></p>
+    <% }) } %>
+    
+    <button type="submit">Change Password</button>
+  </form>
+</div>

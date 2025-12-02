@@ -1,66 +1,47 @@
 const express = require("express");
 const router = new express.Router();
-const invController = require("../controllers/invController");
 const utilities = require("../utilities");
-const invValidate = require("../utilities/inventory-validation"); // you will create this file
+const invController = require("../controllers/invController");
+const invValidate = require("../utilities/inventory-validation");
+const auth = require("../utilities/auth-middleware");
 
-// *******************************
-// Inventory Management View
-// *******************************
-router.get(
-  "/",
-  utilities.handleErrors(invController.buildManagementView)
-);
+// Public routes (no authentication needed)
+router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
+router.get("/detail/:inv_id", utilities.handleErrors(invController.buildDetailView));
 
-// *******************************
-// Add Classification Routes
-// *******************************
-router.get(
-  "/add-classification",
-  utilities.handleErrors(invController.buildAddClassification)
-);
+// ALL inventory management routes need Employee/Admin access
+router.get("/", auth.checkLogin, auth.checkEmployeeOrAdmin, 
+           utilities.handleErrors(invController.buildManagementView));
 
-router.post(
-  "/add-classification",
-  invValidate.classificationRules(),
-  invValidate.checkClassificationData,
-  utilities.handleErrors(invController.registerClassification)
-);
+router.get("/add-classification", auth.checkLogin, auth.checkEmployeeOrAdmin, 
+           utilities.handleErrors(invController.buildAddClassification));
 
-// *******************************
-// Add Inventory Routes
-// *******************************
-router.get(
-  "/add-inventory",
-  utilities.handleErrors(invController.buildAddInventory)
-);
+router.post("/add-classification", auth.checkLogin, auth.checkEmployeeOrAdmin, 
+           invValidate.classificationRules(), invValidate.checkClassificationData, 
+           utilities.handleErrors(invController.registerClassification));
 
-router.post(
-  "/add-inventory",
-  invValidate.inventoryRules(),
-  invValidate.checkInventoryData,
-  utilities.handleErrors(invController.registerInventory)
-);
+router.get("/add-inventory", auth.checkLogin, auth.checkEmployeeOrAdmin, 
+           utilities.handleErrors(invController.buildAddInventory));
 
-// *******************************
-// Classification inventory view
-// *******************************
-router.get("/type/:classificationId",
-  utilities.handleErrors(invController.buildByClassificationId)
-);
+router.post("/add-inventory", auth.checkLogin, auth.checkEmployeeOrAdmin, 
+           invValidate.inventoryRules(), invValidate.checkInventoryData, 
+           utilities.handleErrors(invController.registerInventory));
 
-// *******************************
-// Vehicle detail view
-// *******************************
-router.get("/detail/:inv_id",
-  utilities.handleErrors(invController.buildDetailView)
-);
+router.get("/edit/:inv_id", auth.checkLogin, auth.checkEmployeeOrAdmin, 
+           utilities.handleErrors(invController.editInventoryView));
 
-// *******************************
-// Intentional 500 error
-// *******************************
-router.get("/trigger-error",
-  utilities.handleErrors(invController.throwError)
-);
+router.post("/update", auth.checkLogin, auth.checkEmployeeOrAdmin, 
+           invValidate.inventoryRules(), invValidate.checkUpdateData, 
+           utilities.handleErrors(invController.updateInventory));
+
+router.get("/delete/:inv_id", auth.checkLogin, auth.checkEmployeeOrAdmin, 
+           utilities.handleErrors(invController.buildDeleteConfirmation));
+
+router.post("/delete", auth.checkLogin, auth.checkEmployeeOrAdmin, 
+           utilities.handleErrors(invController.deleteInventoryItem));
+
+// AJAX route also needs Employee/Admin access
+router.get("/getInventory/:classification_id", auth.checkLogin, auth.checkEmployeeOrAdmin, 
+           utilities.handleErrors(invController.getInventoryJSON));
 
 module.exports = router;

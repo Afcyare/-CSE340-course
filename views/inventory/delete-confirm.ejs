@@ -1,0 +1,33 @@
+<div class="admin-form-wrapper">
+  <h1>Delete Inventory Item</h1>
+
+  <% if (message && message.length > 0) { %>
+    <p class="notice"><%= message %></p>
+  <% } %>
+
+  <p class="warning">Confirm Deletion - The delete is permanent and cannot be undone.</p>
+
+  <form action="/inv/delete" method="POST">
+    <!-- Hidden field for inv_id -->
+    <input type="hidden" name="inv_id" value="<%= inv_id %>">
+
+    <label for="inv_make">Make:</label>
+    <input type="text" id="inv_make" name="inv_make" value="<%= inv_make %>" readonly>
+
+    <label for="inv_model">Model:</label>
+    <input type="text" id="inv_model" name="inv_model" value="<%= inv_model %>" readonly>
+
+    <label for="inv_year">Year:</label>
+    <input type="number" id="inv_year" name="inv_year" value="<%= inv_year %>" readonly>
+
+    <label for="inv_price">Price:</label>
+    <input type="number" id="inv_price" name="inv_price" value="<%= inv_price %>" readonly step="0.01">
+
+    <% if (errors) { errors.array().forEach(err => { %>
+      <p class="error"><%= err.msg %></p>
+    <% }) } %>
+
+    <button type="submit" class="btn-delete">Delete Vehicle</button>
+    <a href="/inv/" class="btn-cancel">Cancel</a>
+  </form>
+</div>

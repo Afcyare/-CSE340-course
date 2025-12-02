@@ -8,3 +8,22 @@
     <li><a href="/inv/add-classification">Add Classification</a></li>
     <li><a href="/inv/add-inventory">Add Inventory</a></li>
   </ul>
+  <!-- ADD THE FOLLOWING SECTION AS PER INSTRUCTIONS -->
+<section class="inventory-management">
+  <h2>Manage Inventory</h2>
+  
+  <p>Select a classification from the list to see the items belonging to the classification.</p>
+  
+  <!-- Classification select list -->
+  <%- classificationSelect %>
+  
+  <!-- Empty table for inventory display -->
+  <table id="inventoryDisplay"></table>
+  
+  <!-- Noscript message -->
+  <noscript>
+    <p class="error-message">JavaScript must be enabled to use this page.</p>
+  </noscript>
+</section>
+
+<script src="/js/inventory.js"></script>

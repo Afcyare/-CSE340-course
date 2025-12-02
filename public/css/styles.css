@@ -389,7 +389,285 @@ hr {
   border-radius: 4px;
 }
 
+/* ============================
+   INVENTORY MANAGEMENT TABLE STYLES
+   ============================ */
 
+.inventory-management {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 2px solid var(--main-accent);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.inventory-management h2 {
+  color: var(--primary-text);
+  margin-bottom: 1rem;
+  border-bottom: 3px solid var(--main-accent);
+  padding-bottom: 0.5rem;
+}
+
+.inventory-management p {
+  margin-bottom: 1.5rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Classification Select Dropdown */
+#classification_id {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.75rem;
+  margin-bottom: 2rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+#classification_id:focus {
+  outline: none;
+  border-color: var(--main-accent);
+  box-shadow: 0 0 5px rgba(1, 176, 211, 0.3);
+}
+
+/* Inventory Table Styles */
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#inventoryDisplay thead {
+  background-color: var(--main-accent);
+  color: #000;
+}
+
+#inventoryDisplay th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: bold;
+  font-size: 1rem;
+  border-bottom: 3px solid #01a0c3;
+}
+
+#inventoryDisplay td {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+#inventoryDisplay tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+#inventoryDisplay tbody tr:hover {
+  background-color: #f8fdff;
+}
+
+#inventoryDisplay tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Vehicle Name Column */
+#inventoryDisplay td:first-child {
+  font-weight: 600;
+  color: var(--primary-text);
+}
+
+/* Action Links */
+#inventoryDisplay a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  text-align: center;
+  min-width: 80px;
+}
+
+/* Modify Button */
+#inventoryDisplay a[href*="/inv/edit/"] {
+  background-color: #28a745;
+  color: white;
+  border: 1px solid #218838;
+}
+
+#inventoryDisplay a[href*="/inv/edit/"]:hover {
+  background-color: #218838;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(40, 167, 69, 0.3);
+}
+
+/* Delete Button */
+#inventoryDisplay a[href*="/inv/delete/"] {
+  background-color: #dc3545;
+  color: white;
+  border: 1px solid #c82333;
+}
+
+#inventoryDisplay a[href*="/inv/delete/"]:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
+}
+
+/* No Data Message */
+#inventoryDisplay tr td[colspan] {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 2rem;
+}
+
+/* Loading State */
+#inventoryDisplay tr td:only-child {
+  text-align: center;
+  color: var(--main-accent);
+  font-weight: 600;
+}
+
+/* Noscript Message */
+.error-message {
+  background-color: #fff3cd;
+  border: 1px solid #ffeaa7;
+  color: #856404;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Delete Confirmation Styles */
+.warning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeaa7;
+  color: #856404;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+  border: 1px solid #c82333;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
+}
+
+.btn-cancel {
+  display: inline-block;
+  background-color: #6c757d;
+  color: white;
+  border: 1px solid #5a6268;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.btn-cancel:hover {
+  background-color: #5a6268;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(108, 117, 125, 0.3);
+}
+
+input[readonly] {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+}
+
+/* Responsive Table for Mobile (Under 768px) */
+@media screen and (max-width: 767px) {
+  .inventory-management {
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto; /* Add horizontal scroll to entire section */
+  }
+  
+  #inventoryDisplay {
+    font-size: 0.9rem;
+    min-width: 600px; /* Force minimum width for table */
+    overflow-x: auto;
+    display: block;
+    white-space: nowrap;
+  }
+  
+  #inventoryDisplay th,
+  #inventoryDisplay td {
+    padding: 0.75rem 0.5rem;
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+  
+  #inventoryDisplay a {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+    min-width: 70px;
+    margin: 0.1rem;
+    display: inline-block;
+  }
+  
+  /* Make sure action buttons stay visible */
+  #inventoryDisplay td:last-child {
+    min-width: 180px; /* Ensure enough space for both buttons */
+  }
+}
+
+/* Extra small screens */
+@media screen and (max-width: 480px) {
+  #classification_id {
+    max-width: 100%;
+    font-size: 0.9rem;
+  }
+  
+  .inventory-management {
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+  }
+  
+  .inventory-management h2 {
+    font-size: 1.2rem;
+  }
+  
+  .inventory-management p {
+    font-size: 0.9rem;
+  }
+  
+  #inventoryDisplay {
+    min-width: 500px; /* Slightly smaller for very small screens */
+  }
+  
+  #inventoryDisplay a {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.75rem;
+    min-width: 60px;
+    margin: 0.05rem;
+  }
+}
 
 @media only screen and (min-width: 768px){
   body {
@@ -457,4 +735,24 @@ hr {
   .detail-image {
     width: 100%;
   }
+   #inventoryDisplay {
+    overflow-x: visible; /* Remove horizontal scroll on desktop */
+    white-space: normal; /* Allow text wrapping */
+    min-width: auto; /* Remove forced minimum width */
   }
+  
+  #inventoryDisplay th,
+  #inventoryDisplay td {
+    white-space: normal; /* Allow text wrapping on desktop */
+  }
+  
+  #inventoryDisplay a {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    min-width: 80px;
+    margin: 0 0.25rem;
+  }
+  }
+
+
+ 
